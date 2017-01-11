@@ -17,3 +17,17 @@ func TestPowerset(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkPowerset_len3(b *testing.B) {
+	nums := []int{1, 2, 3}
+	b.Run("Powerset1", func(b *testing.B){
+		for i := 0; i < b.N; i++ {
+			Powerset1(nums)
+		}
+	})
+	b.Run("Powerset2", func(b *testing.B){
+		for i := 0; i < b.N; i++ {
+			Powerset2(nums)
+		}
+	})
+}
