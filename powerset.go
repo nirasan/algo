@@ -25,3 +25,29 @@ func Powerset1(nums []int) [][]int {
 
 	return result
 }
+
+func Powerset2(nums []int) [][]int {
+	length := int(math.Pow(2, float64(len(nums))))
+	result := make([][]int, length)
+
+	index := 0
+	result[index] = []int{}
+	index++
+
+	for _, n := range nums {
+		max := index
+		for i := 0; i < max; i++ {
+			result[index] = copyAndAppend(result[i], n)
+			index++
+		}
+	}
+
+	return result
+}
+
+func copyAndAppend(nums []int, n int) []int {
+	dst := make([]int, len(nums)+1)
+	copy(dst, nums)
+	dst[len(nums)] = n
+	return dst
+}
