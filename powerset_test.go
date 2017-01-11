@@ -50,3 +50,23 @@ func BenchmarkPowerset_len3(b *testing.B) {
 		}
 	})
 }
+
+func BenchmarkPowerset_len10(b *testing.B) {
+	nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	b.Run("Powerset1", func(b *testing.B){
+		for i := 0; i < b.N; i++ {
+			Powerset1(nums)
+		}
+	})
+	b.Run("Powerset2", func(b *testing.B){
+		for i := 0; i < b.N; i++ {
+			Powerset2(nums)
+		}
+	})
+	b.Run("Powerset3", func(b *testing.B){
+		f := func(in []int) {}
+		for i := 0; i < b.N; i++ {
+			Powerset3(nums, f)
+		}
+	})
+}
