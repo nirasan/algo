@@ -6,7 +6,7 @@ import (
 
 func TestCombination(t *testing.T) {
 	nums := []int{1, 2, 3, 4, 5}
-	samples := []func([]int, int)[][]int{ Combination1, Combination2 }
+	samples := []func([]int, int) [][]int{Combination1, Combination2}
 	for i, sample := range samples {
 		result := sample(nums, 3)
 		if len(result) != 10 {
@@ -29,24 +29,24 @@ func TestCombinationCount(t *testing.T) {
 	}
 }
 
-func TestNextIndex(t *testing.T) {
+func TestCombination2NextIndex(t *testing.T) {
 	max := 1 << 5
 	n := (1 << 3) - 1
-	t.Logf("%b", n)
+	t.Logf("start: %b", n)
 	for n < max {
-		n = NextIndex(n)
+		n = Combination2NextIndex(n)
 		t.Logf("%b", n)
 	}
 }
 
 func BenchmarkCombination_5to3(b *testing.B) {
 	nums := []int{1, 2, 3, 4, 5}
-	b.Run("Combination1", func(b *testing.B){
+	b.Run("Combination1", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
 			Combination1(nums, 3)
 		}
 	})
-	b.Run("Combination2", func(b *testing.B){
+	b.Run("Combination2", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
 			Combination2(nums, 3)
 		}
@@ -55,12 +55,12 @@ func BenchmarkCombination_5to3(b *testing.B) {
 
 func BenchmarkCombination_10to3(b *testing.B) {
 	nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	b.Run("Combination1", func(b *testing.B){
+	b.Run("Combination1", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
 			Combination1(nums, 3)
 		}
 	})
-	b.Run("Combination2", func(b *testing.B){
+	b.Run("Combination2", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
 			Combination2(nums, 3)
 		}
